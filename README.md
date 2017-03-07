@@ -1,4 +1,10 @@
 # PyKV
-This is a key-value Nosql database, which will become distributed kv db in the near future.
-todo : add consistent hash support
-already done: client,server,database,query
+这是我用python写的一个KV数据库。现在已经完成基本功能，还需要多多完善。
+### 基本特性
+- 使用zeromq完成client端和server端的通信
+- 支持client端的增删查改
+- 支持存储引擎的替换，默认使用json存储数据 
+- server端支持多种查询模式，详情见后面具体实例
+
+#### 待完善
+- 支持一致性哈希完成分布式存储
