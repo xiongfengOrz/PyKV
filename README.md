@@ -26,42 +26,50 @@ PyKV依赖
 #### 用例
 在客户端建立同server的链接，数据库名称db，建立三个空的query
      
-     
+```python
+
      
            client = client_factory("db")
+	   
 	   
            quer1 = Query()
 	   
            quer2 = Query()
 	   
            quer3 = Query()
-	   
+```	   
 ##### 查询
-
-
-           client.search(quer1.name == "he")
+```python
+         client.search(quer1.name == "he")
+	 ```
 ##### 删除
+```python
 
 
            client.remove(quer2.name == "he")
+	   ```
 ##### 插入
 
+```python
 
            client.insert([{"name":"he"}])
+	   ```
 ##### 更新
-
+```python
 
            client.update("delete", quer3.name == "he")
+	   ```
 #### 运行
 
 本机运行客户端
-
+```python
            python client.py
+	   ```
 	   
  本机运行服务端
  
- 
+ ```python
            python server.py
-     
+     ```
      
  Have fun！
