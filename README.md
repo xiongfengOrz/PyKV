@@ -8,6 +8,8 @@
 
 #### 待完善
 - 支持一致性哈希完成分布式存储
+
+
 #### 开发环境
 
 Python 2.7.6
@@ -27,9 +29,13 @@ PyKV依赖
      
      
            client = client_factory("db")
+	   
            quer1 = Query()
+	   
            quer2 = Query()
+	   
            quer3 = Query()
+	   
 ##### 查询
 
 
@@ -54,6 +60,8 @@ PyKV依赖
 	   
  本机运行服务端
  
+ 
            python server.py
-      
+     
+     
  Have fun！
