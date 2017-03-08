@@ -9,38 +9,51 @@
 #### 待完善
 - 支持一致性哈希完成分布式存储
 #### 开发环境
+
 Python 2.7.6
+
 #### 安装
+
 PyKV依赖
-- [pyzmq](https://github.com/zeromq/pyzmq)
+
+   - [pyzmq](https://github.com/zeromq/pyzmq)
+   
 安装	
 
 	    pip install -r requirements.txt
 #### 用例
 在客户端建立同server的链接，数据库名称db，建立三个空的query
      
-     client = client_factory("db")
-     quer1 = Query()
-     quer2 = Query()
-     quer3 = Query()
+     
+     
+           client = client_factory("db")
+           quer1 = Query()
+           quer2 = Query()
+           quer3 = Query()
 ##### 查询
 
-     client.search(quer1.name == "he")
+
+           client.search(quer1.name == "he")
 ##### 删除
 
-     client.remove(quer2.name == "he")
+
+           client.remove(quer2.name == "he")
 ##### 插入
 
-     client.insert([{"name":"he"}])
+
+           client.insert([{"name":"he"}])
 ##### 更新
 
-     client.update("delete", quer3.name == "he")
+
+           client.update("delete", quer3.name == "he")
 #### 运行
+
 本机运行客户端
 
-      python client.py
+           python client.py
+	   
  本机运行服务端
  
-      python server.py
+           python server.py
       
  Have fun！
