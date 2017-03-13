@@ -129,29 +129,7 @@ if __name__ == "__main__":
     client = client_factory("db")
     
     quer1 = Query()
-    quer2 = Query()
     print(client.search(quer1.name == "he"))
-    #print(client.remove(quer2.name == "me"))
-    #print(client.search((quer1.name == "me")))
-    quer3 = Query()
-    #print(client.update("delete", quer3.name == "you"))
-    #print(client.insert([{"name":"he"}]))
-    #print(len(client))
-    
-    
-    '''
-    while True:
-        command = raw_input("> ")
-        try:
-            try:
-                co = compile(command, "<command-line>", "eval")
-            except SyntaxError:
-                co = compile(command, "<command-line>", "exec")
 
-            ret = eval(co, globals())
-            #if type(ret) == Client:
-            #   ret = ret._run()
-            print(ret)
-        except:
-            traceback.print_exc()
-    '''
+    
+
