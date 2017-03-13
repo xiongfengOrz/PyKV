@@ -51,6 +51,7 @@ PyKV依赖
 ```python
         client.update("delete", quer3.name == "he")
 ```
+具体使用见client.py
 #### 运行
 
 本机运行客户端
