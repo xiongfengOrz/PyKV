@@ -10,7 +10,7 @@ import sys
 
 from pykv.utils import catch_warning
 
-__all__ = ('Query', 'where', 'QueryInfo')
+__all__ = ('Query', 'QueryInfo')
 
 
        
@@ -80,125 +80,37 @@ class Query(object):
  
 
     def __eq__(self, rhs):
-        """
-        Test a dict value for equality.
-
-        >>> Query().f1 == 42
-
-        :param rhs: The value to compare against
-        """
         if self._path == []:
             return 
         
         return QueryInfo([self._path], ["__eq__"], [rhs])
 
     def __ne__(self, rhs):
-        """
-        Test a dict value for inequality.
-
-        >>> Query().f1 != 42
-
-        :param rhs: The value to compare against
-        """
         return QueryInfo([self._path], ["__ne__"], [rhs])
 
 
     def __lt__(self, rhs):
-        """
-        Test a dict value for being lower than another value.
-
-        >>> Query().f1 < 42
-
-        :param rhs: The value to compare against
-        """
         return QueryInfo([self._path], ["__lt__"], [rhs])
 
     def __le__(self, rhs):
-        """
-        Test a dict value for being lower than or equal to another value.
-
-        >>> where('f1') <= 42
-
-        :param rhs: The value to compare against
-        """
         return QueryInfo([self._path], ["__le__"], [rhs])
 
     def __gt__(self, rhs):
-        """
-        Test a dict value for being greater than another value.
-
-        >>> Query().f1 > 42
-
-        :param rhs: The value to compare against
-        """
         return QueryInfo([self._path], ["__gt__"], [rhs])
 
     def __ge__(self, rhs):
-        """
-        Test a dict value for being greater than or equal to another value.
-
-        >>> Query().f1 >= 42
-
-        :param rhs: The value to compare against
-        """
         return QueryInfo([self._path], ["__ge__"], [rhs])
 
     def exists(self):
-        """
-        Test for a dict where a provided key exists.
-
-        >>> Query().f1.exists() >= 42
-
-        :param rhs: The value to compare against
-        """
         return QueryInfo([self._path], ["exists"], [rhs])
 
     def matches(self, regex):
-        """
-        Run a regex test against a dict value (whole string has to match).
-
-        >>> Query().f1.matches(r'^\w+$')
-
-        :param regex: The regular expression to use for matching
-        """
         return QueryInfo([self._path], ["matches"], [rhs])
 
     def search(self, regex):
-        """
-        Run a regex test against a dict value (only substring string has to
-        match).
-
-        >>> Query().f1.search(r'^\w+$')
-
-        :param regex: The regular expression to use for matching
-        """
         return QueryInfo([self._path], ["search"], [rhs])
-
- 
-
+       
     def any(self, cond):
-        """
-        Checks if a condition is met by any element in a list,
-        where a condition can also be a sequence (e.g. list).
-
-        >>> Query().f1.any(Query().f2 == 1)
-
-        Matches::
-
-            {'f1': [{'f2': 1}, {'f2': 0}]}
-
-        >>> Query().f1.any([1, 2, 3])
-        # Match f1 that contains any element from [1, 2, 3]
-
-        Matches::
-
-            {'f1': [1, 2]}
-            {'f1': [3, 4, 5]}
-
-        :param cond: Either a query that at least one element has to match or
-                     a list of which at least one element has to be contained
-                     in the tested element.
--       """
         if callable(cond):
             def _cmp(value):
                 return is_sequence(value) and any(cond(e) for e in value)
@@ -211,26 +123,6 @@ class Query(object):
                                    ('any', tuple(self._path), cond))
 
     def all(self, cond):
-        """
-        Checks if a condition is met by any element in a list,
-        where a condition can also be a sequence (e.g. list).
-
-        >>> Query().f1.all(Query().f2 == 1)
-
-        Matches::
-
-            {'f1': [{'f2': 1}, {'f2': 1}]}
-
-        >>> Query().f1.all([1, 2, 3])
-        # Match f1 that contains any element from [1, 2, 3]
-
-        Matches::
-
-            {'f1': [1, 2, 3, 4, 5]}
-
-        :param cond: Either a query that all elements have to match or a list
-                     which has to be contained in the tested element.
-        """
         if callable(cond):
             def _cmp(value):
                 return is_sequence(value) and all(cond(e) for e in value)
@@ -243,6 +135,3 @@ class Query(object):
                                    ('all', tuple(self._path), cond))
 
 
-def where(key):
-    return Query()[key]
- 
