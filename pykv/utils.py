@@ -6,7 +6,7 @@ from contextlib import contextmanager
 import warnings
 import os
 
-# Python 2/3 independant dict iteration
+
 iteritems = getattr(dict, 'iteritems', dict.items)
 itervalues = getattr(dict, 'itervalues', dict.values)
 
@@ -70,7 +70,6 @@ def touch(fname, times=None, create_dirs=False):
 def catch_warning(warning_cls):
     with warnings.catch_warnings():
         warnings.filterwarnings('error', category=warning_cls)
-
         yield
 
 
