@@ -49,14 +49,6 @@ class Server(object):
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.REP)
         self.socket.connect(self.rep_uri)
-
-    '''
-    def reload_db(self, filename=None):
-        filename = filename if filename is not None else self.db.filename
-        if not os.path.isfile(filename) or self.db.timestamp < os.stat(filename).st_mtime:
-            logging.debug("Reloading database from %s", filename)
-            self.db = Database.load(filename)
-    '''
             
     def run(self):
         self.running = True
@@ -73,10 +65,6 @@ class Server(object):
                     old_stdout = sys.stdout
                     stdout = sys.stdout = StringIO()
                     try:
-                        '''
-                        co = compile(message["command"], "<remote>", "single")
-                        exec co in globals()
-                        '''
                         try:
                             co = compile(message["command"], "<command-line>", "eval")
                         except SyntaxError:
@@ -125,7 +113,7 @@ class Server(object):
                                 print("update_op: ", update_op)
                                 output = func(update_op, cond)
                             else:
-                                output = func(cond) if cond else func() # db.__len__()
+                                output = func(cond) if cond else func() # like db.__len__()
                         except AttributeError:
                             output = "Server not find this operation {0}".format(message["operation"])
                             raise
@@ -138,7 +126,7 @@ class Server(object):
             if type(output).__name__ in ['listiterator', 'dictionary-keyiterator']:
                 output = list(output)
             try:
-                output = json.dumps(output)#, cls=Encoder
+                output = json.dumps(output)
             except:
                 output = str(output)
             self.socket.send(output)
