@@ -16,31 +16,20 @@ def is_sequence(obj):
     return hasattr(obj, '__iter__')
 
 
-
-
 class QueryOps(object):
     """
     Sever-end operation class
     """
     def delete(self, data, eid):
-        #def transform(element):
-        
         data.pop(eid)
         return
 
 
     def increment(self, field):
-        def transform(element):
-            element[field] += 1
-
-        return transform
-
+        pass
 
     def decrement(self, field):
-        def transform(element):
-            element[field] -= 1
-
-        return transform
+        pass
         
     
 class QueryInfo(object):
