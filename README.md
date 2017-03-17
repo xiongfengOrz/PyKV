@@ -29,40 +29,40 @@ PyKV依赖
 ```python
 
      
-        client = client_factory("db")
-        quer1 = Query()
-        quer2 = Query()
-        quer3 = Query()
+     > client = client_factory("db")
+     > quer1 = Query()
+     > quer2 = Query()
+     > quer3 = Query()
 ```	   
 ##### 查询
 ```python
-        client.search(quer1.name == "he")
+     > client.search(quer1.name == "he")
  ```
 ##### 删除
 ```python
-        client.remove(quer2.name == "he")
+     > client.remove(quer2.name == "he")
 ```
 ##### 插入
 
 ```python
-        client.insert([{"name":"he"}])
+    > client.insert([{"name":"he"}])
 ```
 ##### 更新
 ```python
-        client.update("delete", quer3.name == "he")
+    > client.update("delete", quer3.name == "he")
 ```
 具体使用见client.py
 #### 运行
 
 本机运行客户端
 ```python
-        python client.py
+    > python client.py
 ```
 	   
  本机运行服务端
  
 ```python
-        python server.py
+    > python server.py
 ```
      
  Have fun！
