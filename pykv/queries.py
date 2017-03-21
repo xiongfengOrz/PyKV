@@ -181,6 +181,7 @@ class Query(object):
         return self._generate_test(lambda value: func(value, *args),
                                    ('test', tuple(self._path), func, args))
 
+    '''
     def any(self, cond):
         if callable(cond):
             def _cmp(value):
@@ -204,5 +205,5 @@ class Query(object):
 
         return self._generate_test(lambda value: _cmp(value),
                                    ('all', tuple(self._path), cond))
-def where(key):
-    return Query()[key]
+     '''
+ 
