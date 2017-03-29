@@ -181,29 +181,5 @@ class Query(object):
         return self._generate_test(lambda value: func(value, *args),
                                    ('test', tuple(self._path), func, args))
 
-    '''
-    def any(self, cond):
-        if callable(cond):
-            def _cmp(value):
-                return is_sequence(value) and any(cond(e) for e in value)
-
-        else:
-            def _cmp(value):
-                return is_sequence(value) and any(e in cond for e in value)
-
-        return self._generate_test(lambda value: _cmp(value),
-                                   ('any', tuple(self._path), cond))
-
-    def all(self, cond):
-        if callable(cond):
-            def _cmp(value):
-                return is_sequence(value) and all(cond(e) for e in value)
-
-        else:
-            def _cmp(value):
-                return is_sequence(value) and all(e in value for e in cond)
-
-        return self._generate_test(lambda value: _cmp(value),
-                                   ('all', tuple(self._path), cond))
-     '''
+ 
  
