@@ -26,7 +26,6 @@ class TinyDB(object):
         self._opened = True 
      
         self._query_cache = LRUCache(capacity=cache_size)
-
         data = self._read()
         if data:
             self._last_id = max(i for i in data)
@@ -166,7 +165,6 @@ class TinyDB(object):
     def contains(self, cond=None, eids=None):
         if eids is not None:
             return any(self.get(eid=eid) for eid in eids)
-
         return self.get(cond) is not None
 
 
